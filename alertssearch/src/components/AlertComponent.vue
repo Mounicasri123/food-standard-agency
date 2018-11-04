@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div v-for="item in alert.items" :key="item.id">
-        <ol class="list-group list">
-            <li class="list-group-item"> Notation :{{ item.notation }}</li>
+        <ul class="list-group list">
+            <li class="list-group-item d-flex justify-content-start"> Notation :{{ item.notation }}</li>
             <li class="list-group-item" v-for="problem in item.problem" :key="problem.id">
             Allergen : <span v-for="allergy in problem.allergen" :key="allergy.id">
                             {{allergy.label}}<br>
@@ -14,10 +14,10 @@
             <li class="list-group-item" v-for="productDetail in item.productDetails" :key="productDetail.id">
                         Product Name :  {{productDetail.productName}}
             </li>
-            <li class="list-group-item">Reporting Business : {{item.reportingBusiness.commonName}}</li>
+            <li class="list-group-item">Reporting Business : {{ item.reportingBusiness != null ? item.reportingBusiness.commonName : "" }}</li>
             <li class="list-group-item">Short Title : {{item.shortTitle}}  </li>
             <li class="list-group-item">Alert Type : {{ allergyType }}  </li>
-        </ol>
+        </ul>
     </div>
     </div>
 </template>
@@ -65,9 +65,10 @@ export default {
 };
 </script>
 
-<style>
-ol.list{
+<style scoped>
+ul.list{
     border: 2px solid #8f8fff;
+    list-style: none;
 }
 </style>
 

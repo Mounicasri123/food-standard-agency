@@ -1,6 +1,13 @@
 <template>
-  <div id="app">     
-    <alert-component v-for="alert in alerts.items" :key="alert.id" :notation="alert.notation"></alert-component>   
+  <div id="app">
+    <div> 
+      <input type="text" v-model="searchString" @input="searchApi">
+      <ol>
+      <li v-for="item in alerts.items" :key="item.id">
+        <alert-component :notation="item.notation"></alert-component>   
+      </li>
+    </ol>
+    </div>    
   </div>
 </template>
 
@@ -15,9 +22,22 @@ export default {
   },
   data:function(){
     return{
-      alerts : String
+      alerts : {},
+      searchString:''
     }
   },
+  methods:{
+    searchApi(event){
+       axios.get(`https://data.food.gov.uk/food-alerts/id?search=${event.target.value}&_limit=10`)
+    .then( response => {
+        this.alerts = response.data;
+        console.log(response);
+    })
+    .catch(e => {
+       this.errors.push(e)
+    })
+    }
+  },  
   created(){
     axios.get('https://data.food.gov.uk/food-alerts/id?_limit=10')
     .then( response => {
