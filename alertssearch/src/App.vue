@@ -1,6 +1,6 @@
 <template>
   <div id="app">     
-    <alert-component :alert="alert"></alert-component>   
+    <alert-component v-for="alert in alerts.items" :key="alert.id" :notation="alert.notation"></alert-component>   
   </div>
 </template>
 
@@ -15,13 +15,13 @@ export default {
   },
   data:function(){
     return{
-      alert : {notation:"Working!!"}
+      alerts : String
     }
   },
   created(){
-    axios.get('https://data.food.gov.uk/food-alerts/id/FSA-AA-02-2018.json')
+    axios.get('https://data.food.gov.uk/food-alerts/id?_limit=10')
     .then( response => {
-        this.alert = response.data
+        this.alerts = response.data;
         console.log(response);
     })
     .catch(e => {
