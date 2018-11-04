@@ -1,17 +1,21 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">     
+    <alert-component :alert="alert"></alert-component>   
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AlertComponent from './components/AlertComponent.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    'alert-component':AlertComponent
+  },
+  data:function(){
+    return{
+      alert : {notation:"Working!!"}
+    }
   }
 }
 </script>
