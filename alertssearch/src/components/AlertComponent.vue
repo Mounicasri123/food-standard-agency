@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-         <span>{{alert.notation}}</span>
+         <span v-for="item in alert.items" :key="item.id">{{item.notation}}</span>
     </div>
 </template>
 

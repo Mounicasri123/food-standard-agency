@@ -6,6 +6,7 @@
 
 <script>
 import AlertComponent from './components/AlertComponent.vue'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -16,6 +17,16 @@ export default {
     return{
       alert : {notation:"Working!!"}
     }
+  },
+  created(){
+    axios.get('https://data.food.gov.uk/food-alerts/id/FSA-AA-02-2018.json')
+    .then( response => {
+        this.alert = response.data
+        console.log(response);
+    })
+    .catch(e => {
+       this.errors.push(e)
+    })
   }
 }
 </script>
