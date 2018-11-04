@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+    <H1>FSA Food Alerts</H1>
     <div> 
-      <input type="text" v-model="searchString" @input="searchApi">
+      <input type="text" v-model="searchString">
+      <input type="submit" value="search" @click="searchApi">
       <ol>
       <li v-for="item in alerts.items" :key="item.id">
-        <alert-component :notation="item.notation"></alert-component>   
+        <alert-component :item="item"></alert-component>   
       </li>
     </ol>
     </div>    
@@ -28,7 +30,7 @@ export default {
   },
   methods:{
     searchApi(event){
-       axios.get(`https://data.food.gov.uk/food-alerts/id?search=${event.target.value}&_limit=10`)
+       axios.get(`https://data.food.gov.uk/food-alerts/id?search=${this.searchString}&_limit=10`)
     .then( response => {
         this.alerts = response.data;
         console.log(response);
@@ -38,7 +40,7 @@ export default {
     })
     }
   },  
-  created(){
+  created(){    
     axios.get('https://data.food.gov.uk/food-alerts/id?_limit=10')
     .then( response => {
         this.alerts = response.data;
