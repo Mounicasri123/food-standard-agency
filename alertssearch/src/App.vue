@@ -2,8 +2,10 @@
   <div id="app">
     <H1>FSA Food Alerts</H1>
     <div> 
-      <input type="text" v-model="searchString">
-      <input type="submit" value="search" @click="searchApi">
+      <div class="search">
+        <input type="text" v-model="searchString">
+        <input type="submit" value="search" @click="searchApi">
+      </div>
       <ol>
       <li v-for="item in alerts.items" :key="item.id">
         <alert-component :item="item"></alert-component>   
@@ -53,7 +55,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -62,4 +64,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.search{
+  padding: 5px;
+}
+
 </style>

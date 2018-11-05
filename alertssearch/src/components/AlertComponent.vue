@@ -98,13 +98,15 @@ export default {
 
 <style scoped>
 table {
-    width: 50%;
+    width: 60%;
     margin-inline-start: 20%;
     max-width: 100%;
     margin-bottom: 20px;
+    border: 2px solid #8f8fff;
 }
 td{
     border: 1px solid #8f8fff;
+    padding: 5px;
     }
 </style>
 
