@@ -7,10 +7,10 @@
         <input type="submit" value="search" @click="searchApi">
       </div>
       <ol>
-      <li v-for="item in alerts.items" :key="item.id">
-        <alert-component :item="item"></alert-component>   
-      </li>
-    </ol>
+         <li v-for="item in alerts.items" :key="item.id">
+           <alert-component :item="item"></alert-component>   
+         </li>
+      </ol>
     </div>    
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {
     })
   }
 }
+//window.Vue.use(VuejsDialog.main.default)
 </script>
 
 <style scoped>

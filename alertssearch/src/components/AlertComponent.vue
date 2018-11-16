@@ -20,7 +20,7 @@
         </ul> -->
         <table>
             <thead></thead>
-            <tbody>
+            <tbody v-on:click="showModal">
                 <tr>
                     <td>Notation</td>
                     <td>{{ item.notation }}</td>
@@ -34,7 +34,7 @@
                         </span>
                     </td>
                 </tr> 
-                <tr>
+                <!-- <tr>
                     <td>RiskStatement:</td>                        
                     <td><span v-for="problem in item.problem" :key="problem.id">{{problem.riskStatement}}</span> <br></td>
                     
@@ -42,28 +42,51 @@
                 <tr>
                     <td>Product Name :  </td> 
                     <td><span v-for="productDetail in item.productDetails" :key="productDetail.id">  {{productDetail.productName}}</span></td>  
-                </tr>
+                </tr>-->
                 <tr>
                      <td> Reporting Business :</td> 
                      <td>{{ item.reportingBusiness != null ? item.reportingBusiness.commonName : "" }}</td>
                 </tr> 
+                
             </tbody>
         </table>
+        
+        <!-- <button type="button" class="btn" v-on:click="showModal">
+             Open Modal!
+         </button> -->
+        <Single-alert v-if="isModalVisible" v-on:close="closeModal" :notation="item.notation"/>
+    
     </div>
     <!-- </div> -->
 </template>
 
 <script>
 //import axios from 'axios';
+// import VModal from 'vue-js-modal'
+// Vue.use(VModal)
+ 
+import SingleAlert from './SingleAlert.vue';
 
 export default {
   name: "AlertComponent",
   props: ["item"],
-//   data:function(){
-//       return{
-//           item:{}
-//       }
-//   },
+   components: {
+   //'single-alert': SingleAlert
+   SingleAlert,
+  },
+  data () {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    },
   computed: {
     allergyType: function() {
       var value = this.item.notation.split("-")[1];
@@ -81,7 +104,13 @@ export default {
       }
       return result;
     }
-  }
+  },
+//    methods: {
+//     showAlert: function (event) {
+//       alert('Notation :' +JSON.stringify(this.item.notation));
+//     }
+//    }
+  
 //  created(){
 //      console.log(this.notation);
 //     axios.get(`https://data.food.gov.uk/food-alerts/id/${this.notation}.json`)
