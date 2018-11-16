@@ -48,7 +48,7 @@
 import axios from 'axios';
 
   export default {
-    name: 'SingleAlert',
+    name: 'DialogComponent',
     props:['notation'],
     data:function(){
         return{

@@ -6,11 +6,11 @@
         <input type="text" v-model="searchString">
         <input type="submit" value="search" @click="searchApi">
       </div>
-      <ol>
+      <ul type="none">
          <li v-for="item in alerts.items" :key="item.id">
            <alert-component :item="item"></alert-component>   
          </li>
-      </ol>
+      </ul>
     </div>    
   </div>
 </template>

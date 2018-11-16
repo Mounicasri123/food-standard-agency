@@ -54,7 +54,7 @@
         <!-- <button type="button" class="btn" v-on:click="showModal">
              Open Modal!
          </button> -->
-        <Single-alert v-if="isModalVisible" v-on:close="closeModal" :notation="item.notation"/>
+        <dialog-component v-if="isModalVisible" v-on:close="closeModal" :notation="item.notation"/>
     
     </div>
     <!-- </div> -->
@@ -65,14 +65,14 @@
 // import VModal from 'vue-js-modal'
 // Vue.use(VModal)
  
-import SingleAlert from './SingleAlert.vue';
+import DialogComponent from './DialogComponent.vue';
 
 export default {
   name: "AlertComponent",
   props: ["item"],
    components: {
    //'single-alert': SingleAlert
-   SingleAlert,
+   DialogComponent,
   },
   data () {
       return {
